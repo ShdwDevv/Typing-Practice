@@ -1,4 +1,5 @@
-const RANDOM_QUOTE_API_URL = "http://api.quotable.io/random"
+// const RANDOM_QUOTE_API_URL = "https://zenquotes.io/api/random"
+const RANDOM_QUOTE_API_URL = "https://api.allorigins.win/get?url=https://zenquotes.io/api/random";
 const quoteDisplayElement = document.getElementById('quoteDisplay');
 const quoteInputElement = document.getElementById('quoteInput');
 const timerElement = document.getElementById('timer');
@@ -26,11 +27,11 @@ quoteInputElement.addEventListener('input',()=>{
     if(correct) renderNewQuote();
 });
 
-function getRandomQuote(){
-    const word = fetch(RANDOM_QUOTE_API_URL)
-        .then(response => response.json())
-        .then(data => data.content)
-    return word;
+async function getRandomQuote(){
+    const word = await fetch(RANDOM_QUOTE_API_URL);
+    const data = await word.json();
+    const parsedData = JSON.parse(data.contents);
+    return parsedData[0].q;
 }
 async function renderNewQuote (){
     quoteDisplayElement.innerText = '';
