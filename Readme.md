@@ -16,3 +16,4 @@ function getTimerTime(){
     return Math.floor((new Date - startTime) / 1000);
 }
 ```
+* Random Quote API : https://quotes-api-self.vercel.app/quote
