@@ -38,7 +38,8 @@ async function getRandomQuote() {
 }
 
 async function renderNewQuote() {
-    const quote = await getRandomQuote();
+    let quote = await getRandomQuote();
+    quote = quote.replace('’','');
     quoteDisplayElement.innerHTML = ''; // Clear previous quote
     quote.split('').forEach(letter => {
         const letterSpan = document.createElement('span');
